@@ -1,7 +1,5 @@
 
-
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gl/memphot1%2Ffender-calculator/HEAD?labpath=%2Fvoila%2Frender%2Ffender_design.ipynb)
-
 # Fender calculator
 
 
