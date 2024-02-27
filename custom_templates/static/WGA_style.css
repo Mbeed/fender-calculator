@@ -1,0 +1,32 @@
+
+.typ_text {
+    color: #16254C;
+    font-weight: bold;
+}
+
+.typ_input {
+    width: 15rem;
+}
+
+.typ_label label {
+    color: #16254C;
+    font-weight: bold;
+    display: block;
+    width: 100%;                  
+}
+label::after{ content: ": ";}
+               
+
+.typ_button {
+    background-color: #16254C;
+    color: #ED1A3B;
+    border-radius: 8px;
+    transition: 0.4s;
+}
+             
+.typ_button:hover {
+    background-color: white;
+    border: 1px solid #ED1A3B;
+}
+
+
