@@ -4,21 +4,29 @@ import numpy as np
 
 class SCN(Fender):
 
-    def __init__(self, size, grade, energy_tolerance, reaction_tolerance, material="Blend") -> None:
+    def __init__(self, size:str, grade:str|float, energy_tolerance:float, 
+                 reaction_tolerance:float, material="Blend") -> None:
 
         depth = int(size[3:])
         self.size = size
-        self.grade = grade
+        if isinstance(grade,str):
+            self.grade = float(grade[1:])
+        elif isinstance(grade,float):
+            self.grade = grade
+        else:
+            raise ValueError("Grade input incorret. Must be of form F0.0 or 0.0.")
         self.material = material
         
         rated_reaction, rated_energy = self.__get_rated_capacities__()
-        super().__init__(depth, rated_reaction, rated_energy, energy_tolerance, reaction_tolerance)
+        super().__init__(
+            depth, rated_reaction, rated_energy, energy_tolerance, reaction_tolerance
+            )
 
 
         self._fender_performance = np.array([
-            [0,0.05,0.1,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5,0.55,0.6,0.65,0.7,0.72,0.75],
-            [0,0.01,0.04,0.08,0.15,0.22,0.31,0.4,0.5,0.59,0.67,0.75,0.82,0.89,0.96,1.00,1.06],
-            [0,0.20,0.39,0.58,0.76,0.90,0.98,1.00,0.98,0.94,0.9,0.88,0.88,0.90,0.96,1.00,1.10]
+            [0,0.05,0.10,0.15,0.20,0.25,0.30,0.35,0.40,0.45,0.50,0.55,0.60,0.65,0.70,0.72,0.75],
+            [0,0.01,0.04,0.08,0.15,0.22,0.31,0.40,0.50,0.59,0.67,0.75,0.82,0.89,0.96,1.00,1.06],
+            [0,0.20,0.39,0.58,0.76,0.90,0.98,1.00,0.98,0.94,0.90,0.88,0.88,0.90,0.96,1.00,1.10]
         ])
     
         self._temperature_factor_table = np.array([
@@ -42,7 +50,7 @@ class SCN(Fender):
             [1.000,1.000,1.000,1.000,1.000,0.950,0.800]
         ]).transpose()
     
-    def __get_rated_capacities__(self):
+    def __get_rated_capacities__(self) -> tuple[float,float]:
     
         row = Catalogue.SCN.index(self.size)
         col = Catalogue.SCN_grades.index(self.grade)
@@ -52,7 +60,7 @@ class SCN(Fender):
 
         return rated_reaction, rated_energy
 
-    def angle_factor(self, berthing_angle):
+    def angle_factor(self, berthing_angle:float) -> tuple[float,float]:
         
         energy_angle_factor = np.interp(berthing_angle,
                                         self._angle_factor_table[:,0],
