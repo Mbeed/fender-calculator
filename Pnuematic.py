@@ -1,6 +1,6 @@
 from Fender import Fender
 import numpy as np
-import Catalogue
+import Catalogue as Catalogue
 import matplotlib.pyplot as plt
 from scipy.interpolate import interp1d 
 
@@ -31,6 +31,13 @@ class Pnuematic(Fender):
         rated_hull_pressure = pnuematic_ratings[row][2]
         return rated_energy, rated_reaction, rated_hull_pressure
 
+    def capacity_factor(self, berthing_angle, velocity, max_temp, min_temp):
+
+        energy_factor = (1.0-self.energy_tolerance)
+        reaction_factor = (1.0+self.reaction_tolerance)
+        
+        return energy_factor, reaction_factor
+    
     def fender_chart(self, berthing_energy=0):
 
         colors = ['b','g','r','c','m','y','k','w']
@@ -84,7 +91,6 @@ class Pnuematic(Fender):
                 
                 axs[i].vlines(deflection,0,axs[i].get_ylim()[1],linestyles='dashed')
 
-        plt.show()
 
 if __name__ == "__main__":
 

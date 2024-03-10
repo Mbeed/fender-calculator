@@ -1,5 +1,5 @@
 from Fender import Fender
-import Catalogue
+import Catalogue as Catalogue
 import numpy as np
 
 class SCN(Fender):
@@ -104,8 +104,8 @@ class SCN(Fender):
         reaction_temperature_factor = self.temperature_factor(min_temp)
 
 
-        energy_factor = energy_angle_factor*velocity_factor*energy_temperature_factor
-        reaction_factor = reaction_angle_factor*velocity_factor*reaction_temperature_factor
+        energy_factor = energy_angle_factor*velocity_factor*energy_temperature_factor*(1.0-self.energy_tolerance/100)
+        reaction_factor = reaction_angle_factor*velocity_factor*reaction_temperature_factor*(1.0+self.reaction_tolerance/100)
         
         return energy_factor, reaction_factor
         
