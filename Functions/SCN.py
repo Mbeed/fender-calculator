@@ -4,7 +4,7 @@ import numpy as np
 
 class SCN(Fender):
 
-    def __init__(self, size:str, grade:str|float, energy_tolerance:float, 
+    def __init__(self, size:str, grade, energy_tolerance:float, 
                  reaction_tolerance:float, material="Blend") -> None:
 
         depth = int(size[3:])
