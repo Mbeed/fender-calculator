@@ -1,5 +1,5 @@
 import streamlit as st
-import Berthing
+import Functions.Berthing
 
 berthing_point = {
     "1/6 point": 0.333,
@@ -19,7 +19,7 @@ def BerthingEnergy():
     try:
         abnormal_factor = abnormal_factor_w
         berthing_point_val = berthing_point.get(berthing_point_w)*LBP_w
-        normal_energy = Berthing.BerthingEnergy(
+        normal_energy = Functions.Berthing.BerthingEnergy(
             berthing_velocity=velocity_w,
             berthing_angle=berthing_angle_w,
             velocity_angle=velocity_angle_w,

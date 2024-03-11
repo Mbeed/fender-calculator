@@ -1,10 +1,10 @@
 
 import streamlit as st
 import extra_streamlit_components as stx
-import Catalogue
-from SCN import SCN
-from MV import MV
-from Pnuematic import Pnuematic
+import Functions.Catalogue
+from Functions.SCN import SCN
+from Functions.MV import MV
+from Functions.Pnuematic import Pnuematic
 import numpy as np
 
 st.set_page_config(
@@ -154,11 +154,11 @@ with fender_form:
     if fender_selection=="SCN":
         SCN_w = fender_container.selectbox(
             label='Choose Fender:',
-            options=Catalogue.SCN,
+            options=Functions.Catalogue.SCN,
             index=0)
         SCN_grade_w = fender_container.selectbox(
             label='Choose Fender Grade:',
-            options=Catalogue.SCN_grades,
+            options=Functions.Catalogue.SCN_grades,
             index=0)
         SCN_material_w =fender_container.selectbox(
             label="Choose fender material:", 
@@ -169,7 +169,7 @@ with fender_form:
     elif fender_selection=="MV":
         MV_w = fender_container.selectbox(
             label='Choose Fender',
-            options=Catalogue.MV,
+            options=Functions.Catalogue.MV,
             index=0)
         MV_compound_w = fender_container.selectbox(
             label='Choose Compound Type',
@@ -191,7 +191,7 @@ with fender_form:
     elif fender_selection=="Pnuematic":
         pnuematic_w = fender_container.selectbox(
             label='Choose Fender',
-            options=Catalogue.pnuematic,
+            options=Functions.Catalogue.pnuematic,
             index=0)
         pnuematic_pressure_w = fender_container.selectbox(
             label='Choose inflation pressure',

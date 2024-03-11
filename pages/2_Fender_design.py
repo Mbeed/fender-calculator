@@ -1,10 +1,10 @@
 
 import streamlit as st
 import extra_streamlit_components as stx
-import Catalogue
-from SCN import SCN
-from MV import MV
-from Pnuematic import Pnuematic
+import Functions.Catalogue
+from Functions.SCN import SCN
+from Functions.MV import MV
+from Functions.Pnuematic import Pnuematic
 import numpy as np
 
 fender_types = ["SCN","MV","Pnuematic"]
@@ -71,41 +71,41 @@ def OptimalFender():
         )
 
     if fender_type == 'SCN':
-        design_energies = np.array(Catalogue.SCN_ratings[1])*energy_reduction_factor*(1-manufacturing_tolerance_w/100)
+        design_energies = np.array(Functions.Catalogue.SCN_ratings[1])*energy_reduction_factor*(1-manufacturing_tolerance_w/100)
 
         if design_criteria == 'Depth':
-            row = Catalogue.SCN.index(selection)
+            row = Functions.Catalogue.SCN.index(selection)
             col = first_index(berthing_energy, design_energies[row,:])
             if col is not None: 
-                results_col.write(f"{selection}-F{Catalogue.SCN_grades[col]}")
+                results_col.write(f"{selection}-F{Functions.Catalogue.SCN_grades[col]}")
             else:
                 results_col.write("This size is insufficient, select larger fender.")
         else:
-            col = Catalogue.SCN_grades.index(float(selection[1:]))
+            col = Functions.Catalogue.SCN_grades.index(float(selection[1:]))
             row = first_index(berthing_energy, design_energies[:,col])
             if row is not None:
-                results_col.write(f"{Catalogue.SCN[row]}-{selection}")
+                results_col.write(f"{Functions.Catalogue.SCN[row]}-{selection}")
             else: 
                 results_col.write(" This grade is insufficient, select higher grade.")
 
     elif fender_type == 'MV':
         if design_criteria == 'Depth':
-            row = Catalogue.MV.index(selection)
-            design_energies = [Catalogue.MV_compound_A[row][0],Catalogue.MV_compound_B[row][0]]
+            row = Functions.Catalogue.MV.index(selection)
+            design_energies = [Functions.Catalogue.MV_compound_A[row][0],Functions.Catalogue.MV_compound_B[row][0]]
             col = first_index(berthing_energy,design_energies)
             if col is not None:
-                results_col.write(f"{Catalogue.MV[row]}-{['A','B'][col]}")
+                results_col.write(f"{Functions.Catalogue.MV[row]}-{['A','B'][col]}")
             else: 
                 results_col.write(" This grade is insufficient, select higher grade.")
 
         else:    
             if selection == "A":
-                design_energies = np.array(Catalogue.MV_compound_A)[0,:]*energy_reduction_factor
+                design_energies = np.array(Functions.Catalogue.MV_compound_A)[0,:]*energy_reduction_factor
             else:
-                design_energies = np.array(Catalogue.MV_compound_B)[0,:]*energy_reduction_factor
+                design_energies = np.array(Functions.Catalogue.MV_compound_B)[0,:]*energy_reduction_factor
             row = first_index(berthing_energy, design_energies)
             if row is not None:
-                results_col.write(f"{Catalogue.MV[row]}-{selection}")
+                results_col.write(f"{Functions.Catalogue.MV[row]}-{selection}")
             else: 
                 results_col.write(" This grade is insufficient, select higher grade.")
 
@@ -113,7 +113,7 @@ def OptimalFender():
         if design_criteria == 'Depth':
             iter_list = [50, 80]    
         else:
-            iter_list = Catalogue.pnuematic
+            iter_list = Functions.Catalogue.pnuematic
   
 st.set_page_config(
     page_title="Berthing Energy",
@@ -174,16 +174,16 @@ with design_form:
         if design_criteria_w == 'Depth':
             selection_w = st.selectbox(
                 label="Fender Depth",
-                options=Catalogue.SCN)
+                options=Functions.Catalogue.SCN)
         else:
             selection_w = st.selectbox(
                 label="Fender Grade",
-                options=list(map(lambda orig_string: f"F{orig_string}",Catalogue.SCN_grades)))  
+                options=list(map(lambda orig_string: f"F{orig_string}",Functions.Catalogue.SCN_grades)))  
     elif fender_selection == 'MV':
         if design_criteria_w == 'Depth':
             selection_w = st.selectbox(
                 label="Fender Depth",
-                options=Catalogue.MV)
+                options=Functions.Catalogue.MV)
         else:    
             selection_w = st.selectbox(
                 label="Fender Compound",
@@ -192,7 +192,7 @@ with design_form:
         if design_criteria_w == 'Depth':
             selection_w = st.selectbox(
                 label="Fender Diameter",
-                options=Catalogue.pnuematic)
+                options=Functions.Catalogue.pnuematic)
         else:
             selection_w = st.selectbox(
                 label="Fender Pressure",
