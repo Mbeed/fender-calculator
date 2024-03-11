@@ -1,6 +1,6 @@
-from Fender import Fender
+from Functions.Fender import Fender
 import numpy as np
-import Catalogue as Catalogue
+import Functions.Catalogue as Catalogue
 import matplotlib.pyplot as plt
 from scipy.interpolate import interp1d 
 

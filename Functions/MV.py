@@ -1,5 +1,5 @@
-from Fender import Fender
-import Catalogue as Catalogue
+from Functions.Fender import Fender
+import Functions.Catalogue as Catalogue
 import numpy as np
 from scipy.interpolate import LinearNDInterpolator
 
