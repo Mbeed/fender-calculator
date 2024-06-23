@@ -1,10 +1,10 @@
 
 import streamlit as st
 import extra_streamlit_components as stx
-import Catalogue
-from SCN import SCN
-from MV import MV
-from Pnuematic import Pnuematic
+import functions.Catalogue as Catalogue
+from functions.SCN import SCN
+from functions.MV import MV
+from functions.Pnuematic import Pnuematic
 import numpy as np
 
 fender_types = ["SCN","MV","Pnuematic"]

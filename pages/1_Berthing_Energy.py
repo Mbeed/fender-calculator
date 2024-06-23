@@ -1,5 +1,5 @@
 import streamlit as st
-import Berthing
+import functions.Berthing as Berthing
 
 berthing_point = {
     "1/6 point": 0.333,
