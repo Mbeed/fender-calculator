@@ -5,4 +5,4 @@ scipy==1.12.0
 ipywidgets==8.1.1
 ipython==8.12.3
 ipympl==0.9.3
-voila==0.5.5
+streamlit==1.31.1

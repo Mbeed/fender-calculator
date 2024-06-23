@@ -1,5 +1,5 @@
 from Fender import Fender
-import Catalogue
+import Catalogue as Catalogue
 import numpy as np
 from scipy.interpolate import LinearNDInterpolator
 
@@ -24,7 +24,6 @@ class MV(Fender):
             [0,0.310,0.580,0.780,0.920,1.000,0.960,0.900,0.850,0.840,1.000,1.300]
         ])
         
-
         self._transverse_reduction = np.array([
             [1.00,0.980,0.960,0.900],
             [1.00,0.970,0.910,0.830],
@@ -80,14 +79,13 @@ class MV(Fender):
         energy_temperature_factor = self.temperature_factor(max_temp)
         reaction_temperature_factor = self.temperature_factor(min_temp)
 
-        energy_factor = energy_angle_factor*velocity_factor*energy_temperature_factor
-        reaction_factor = velocity_factor*reaction_temperature_factor
+        energy_factor = energy_angle_factor*velocity_factor*energy_temperature_factor*(1.0-self.energy_tolerance)
+        reaction_factor = velocity_factor*reaction_temperature_factor*(1.0+self.energy_tolerance)
         
         return energy_factor, reaction_factor
 
     def fender_chart(self, berthing_angle=0.0, bow_flare_angle=0.0, velocity=0.01, max_temperature=23.0, min_temperature=23.0, berthing_energy=0.0):
         factors = self.capacity_factor(berthing_angle, bow_flare_angle, velocity, max_temperature, min_temperature)
-
 
         return super().fender_chart(
             fender_type=f"{self.size}-Compound {self.compound}", 

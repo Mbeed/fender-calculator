@@ -1,9 +1,9 @@
 import unittest
-import Berthing
+import functions.Berthing as Berthing
 import numpy as np
-from MV import MV
-from SCN import  SCN
-from Pnuematic import Pnuematic
+from functions.MV import MV
+from functions.SCN import SCN
+from functions.Pnuematic import Pnuematic
 
 #Berthing energy calculation package testing. Uses inputs from PIANC WG 33 Appendix case study. 
 #Note, not all values within this example are correct.

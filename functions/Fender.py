@@ -88,8 +88,8 @@ class Fender():
 
         fender_properties = np.array([[
             self.depth,
-            self.rated_energy*(1-self.energy_tolerance)*energy_scalar,
-            self.rated_reaction*(1+self.reaction_tolerance)*reaction_scalar,
+            self.rated_energy*energy_scalar,
+            self.rated_reaction*reaction_scalar,
         ]]).transpose()
 
         fender_chart = np.multiply(fender_properties, self._fender_performance).transpose()
@@ -146,7 +146,7 @@ class Fender():
                     color=colors[i]
                 )
                 
-                axs[i].vlines(deflection,0,rated,linestyles='dashed')
-        plt.show()
+                axs[i].vlines(deflection,0,axs[i].get_ylim()[1],linestyles='dashed')
+        #plt.show()
 
         
