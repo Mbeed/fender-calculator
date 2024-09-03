@@ -39,7 +39,7 @@ def MassCoefficient(draft:float, UKC:float, beam:float, Cb:float,
                    
 def BerthingEnergy(berthing_velocity, berthing_angle,displacement,LBP, 
                     beam, draft, UKC, berthing_point, softness_coefficient=1.0, 
-                    configuration_coefficient=1.0,  velocity_angle=0, mass_calc="Vasco Costa", output = False) -> str|float:
+                    configuration_coefficient=1.0,  velocity_angle=0, mass_calc="Vasco Costa", output = False) -> float:
 
     #convert degrees into radians
     berthing_angle = np.deg2rad(berthing_angle)
@@ -76,7 +76,6 @@ if __name__ == "__main__":
     UKC = 0.5 #m
     
     berthing_point = 0.25*LOA
-    
 
     berthing = BerthingEnergy(
         berthing_velocity=0.4,
