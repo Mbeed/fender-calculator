@@ -8,7 +8,7 @@ st.set_page_config(
 
 st.write("# Fender Design Calculator")
 
-st.sidebar.image("static/WGA_LOGO-RGB-PRIMARY_RED.png")
+st.sidebar.image("RKF-Reversed-Stacked-SolidCMYK.jpg")
 
 st.markdown(
     """
