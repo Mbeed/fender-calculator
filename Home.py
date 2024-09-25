@@ -8,7 +8,7 @@ st.set_page_config(
 
 st.write("# Fender Design Calculator")
 
-st.sidebar.image("static/KF-Reversed-Stacked-SolidCMYK.jpg")
+#st.sidebar.image("static/KF-Reversed-Stacked-SolidCMYK.jpg")
 
 st.markdown(
     """
